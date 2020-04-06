@@ -3,6 +3,9 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
 	id "io.freefair.lombok" version "5.0.0-rc6"
+	id 'net.ltgt.apt' version '0.20'
+	id 'net.ltgt.apt-idea' version '0.21'
+	id 'net.ltgt.apt-eclipse' version '0.21'
 }
 
 group = 'com.example'
@@ -20,7 +23,15 @@ dependencies {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 	implementation group: 'com.h2database', name: 'h2', version: '1.4.200'
+	implementation 'io.github.kostaskougios:cloning:1.10.3'
 
+	implementation "org.mapstruct:mapstruct:1.3.1.Final"
+	annotationProcessor "org.mapstruct:mapstruct-processor:1.3.1.Final"
+	testAnnotationProcessor "org.mapstruct:mapstruct-processor:1.3.1.Final"
+
+	// https://mvnrepository.com/artifact/nl.jqno.equalsverifier/equalsverifier
+	testCompile group: 'nl.jqno.equalsverifier', name: 'equalsverifier', version: '1.0.2'
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
 }
 
 test {

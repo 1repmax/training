@@ -1,6 +1,14 @@
 package com.example.training.service;
 
-// TODO: 25/03/2020 Add appropriate annotation to mark the class as Bean (to put into context)
+import java.util.Optional;
+
+import com.example.training.model.Account;
+import com.example.training.model.builders.AccountBuilder;
+import com.example.training.repository.AccountRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class AccountService {
 
     /* TODO: 25/03/2020 Implement service logic, which will contain all necessary methods and functionality to be used from controller
@@ -9,4 +17,22 @@ public class AccountService {
         Try to use as much Stream API/Optionals/Lambdas as you can, to try yourself (the easiest way, I think,
         is to write code how you can/cover by tests and then refactor it using lambdas and other Java8 things)
      */
+
+    private AccountRepository accountRepository;
+
+    @Autowired
+    public AccountService(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
+
+    /**
+     * Allows to retrieve account by providing an account ID.
+     * @param id Identifier of the account to fetch from database
+     * @return Account object
+     */
+    public Account getAccount(long id) {
+        // TODO Currently uses hard coded values. Implement fetching from DB and error checks.
+        Optional<Account> account = Optional.of(AccountBuilder.getBuilder().withDefaults().build());
+        return account.orElse(AccountBuilder.getBuilder().withDefaults().build());
+    }
 }
