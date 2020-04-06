@@ -1,0 +1,19 @@
+server:
+  port: 8080
+
+api:
+  context: /user
+  version: /v1
+
+spring:
+  #Configurations for H2 in-memory database
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
