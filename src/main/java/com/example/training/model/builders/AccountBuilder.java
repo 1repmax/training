@@ -4,7 +4,7 @@ import com.example.training.model.Account;
 import com.example.training.model.Person;
 import com.rits.cloning.Cloner;
 
-public class AccountBuilder {
+public final class AccountBuilder {
 
     private Account template;
 

@@ -3,11 +3,9 @@ package com.example.training.model;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
 public class AddressInformation {
 
     @Id
