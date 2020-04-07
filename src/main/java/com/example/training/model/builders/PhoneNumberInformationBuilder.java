@@ -1,54 +1,54 @@
 package com.example.training.model.builders;
 
 import com.example.training.model.PhoneNumberInformation;
+import com.rits.cloning.Cloner;
 
 public final class PhoneNumberInformationBuilder {
 
-    private long id;
-    private String mainPhoneNumber;
-    private String additionalPhoneNumber;
-    private String country;
-    private String operator;
+    private PhoneNumberInformation template;
 
     private PhoneNumberInformationBuilder() {
+        template = new PhoneNumberInformation();
+    }
+
+    private PhoneNumberInformationBuilder(PhoneNumberInformation phoneNumberInformation) {
+        template= Cloner.standard().deepClone(phoneNumberInformation);
     }
 
     public static PhoneNumberInformationBuilder getBuilder() {
         return new PhoneNumberInformationBuilder();
     }
 
+    public static PhoneNumberInformationBuilder getBuilder(PhoneNumberInformation phoneNumberInformation) {
+        return new PhoneNumberInformationBuilder(phoneNumberInformation);
+    }
+
     public PhoneNumberInformationBuilder id(long id) {
-        this.id = id;
+        template.setId(id);
         return this;
     }
 
     public PhoneNumberInformationBuilder mainPhoneNumber(String mainPhoneNumber) {
-        this.mainPhoneNumber = mainPhoneNumber;
+        template.setMainPhoneNumber(mainPhoneNumber);
         return this;
     }
 
     public PhoneNumberInformationBuilder additionalPhoneNumber(String additionalPhoneNumber) {
-        this.additionalPhoneNumber = additionalPhoneNumber;
+        template.setAdditionalPhoneNumber(additionalPhoneNumber);
         return this;
     }
 
     public PhoneNumberInformationBuilder country(String country) {
-        this.country = country;
+        template.setCountry(country);
         return this;
     }
 
     public PhoneNumberInformationBuilder operator(String operator) {
-        this.operator = operator;
+        template.setOperator(operator);
         return this;
     }
 
     public PhoneNumberInformation build() {
-        PhoneNumberInformation phoneNumberInformation = new PhoneNumberInformation();
-        phoneNumberInformation.setId(id);
-        phoneNumberInformation.setMainPhoneNumber(mainPhoneNumber);
-        phoneNumberInformation.setAdditionalPhoneNumber(additionalPhoneNumber);
-        phoneNumberInformation.setCountry(country);
-        phoneNumberInformation.setOperator(operator);
-        return phoneNumberInformation;
+        return template;
     }
 }

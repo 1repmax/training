@@ -2,8 +2,9 @@ package com.example.training.mappers;
 
 import com.example.training.dto.AccountDto;
 import com.example.training.model.Account;
+import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.mapstruct.Mapping;
 
 /**
  * Account mapper used for automatically generating mapper instances using MapStruct library.
@@ -14,8 +15,13 @@ import org.mapstruct.factory.Mappers;
 @Mapper(componentModel = "spring")
 public interface AccountMapper {
 
-    AccountMapper INSTANCE = Mappers.getMapper(AccountMapper.class);
-
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "person", target = "person")
     AccountDto toDto(Account account);
+
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "person", target = "person")
     Account toDomain(AccountDto accountDto);
 }

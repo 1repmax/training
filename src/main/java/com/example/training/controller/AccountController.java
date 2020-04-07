@@ -25,9 +25,9 @@ public class AccountController {
         etc..
     */
 
-    private OrchestrationService orchestrationService;
-    private AccountMapper accountMapper;
-    private PersonMapper personMapper;
+    private final OrchestrationService orchestrationService;
+    private final AccountMapper accountMapper;
+    private final PersonMapper personMapper;
 
     @Autowired
     public AccountController(OrchestrationService orchestrationService, AccountMapper accountMapper,

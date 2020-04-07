@@ -1,40 +1,44 @@
 package com.example.training.model.builders;
 
 import com.example.training.model.AccountInformation;
+import com.rits.cloning.Cloner;
 
 public final class AccountInformationBuilder {
 
-    private long id;
-    private String linkedEmailAddress;
-    private String password;
+    private AccountInformation template;
 
-    private AccountInformationBuilder() {
-    }
+   private AccountInformationBuilder() {
+       template = new AccountInformation();
+   }
 
-    public static AccountInformationBuilder getBuilder() {
-        return new AccountInformationBuilder();
-    }
+   private AccountInformationBuilder(AccountInformation accountInformation) {
+       template = Cloner.standard().deepClone(accountInformation);
+   }
+
+   public static AccountInformationBuilder getBuilder() {
+       return new AccountInformationBuilder();
+   }
+
+   public static AccountInformationBuilder getBuilder(AccountInformation accountInformation) {
+       return new AccountInformationBuilder(accountInformation);
+   }
 
     public AccountInformationBuilder id(long id) {
-        this.id = id;
+        template.setId(id);
         return this;
     }
 
     public AccountInformationBuilder linkedEmailAddress(String linkedEmailAddress) {
-        this.linkedEmailAddress = linkedEmailAddress;
+        template.setLinkedEmailAddress(linkedEmailAddress);
         return this;
     }
 
     public AccountInformationBuilder password(String password) {
-        this.password = password;
+        template.setPassword(password);
         return this;
     }
 
     public AccountInformation build() {
-        AccountInformation accountInformation = new AccountInformation();
-        accountInformation.setId(id);
-        accountInformation.setLinkedEmailAddress(linkedEmailAddress);
-        accountInformation.setPassword(password);
-        return accountInformation;
+        return template;
     }
 }

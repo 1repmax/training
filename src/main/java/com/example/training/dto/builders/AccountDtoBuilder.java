@@ -4,7 +4,7 @@ import com.example.training.dto.AccountDto;
 import com.example.training.dto.PersonDto;
 import com.rits.cloning.Cloner;
 
-public class AccountDtoBuilder {
+public final class AccountDtoBuilder {
 
     private AccountDto template;
 
@@ -32,5 +32,9 @@ public class AccountDtoBuilder {
     public AccountDtoBuilder id(long id) {
         template.setId(id);
         return this;
+    }
+
+    public AccountDto build() {
+        return template;
     }
 }

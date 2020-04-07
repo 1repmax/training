@@ -1,61 +1,59 @@
 package com.example.training.model.builders;
 
 import com.example.training.model.AddressInformation;
+import com.rits.cloning.Cloner;
 
 public final class AddressInformationBuilder {
 
-    private long id;
-    private String mainAddress;
-    private String additionalAddress;
-    private String city;
-    private String country;
-    private String postalCode;
+    private AddressInformation template;
 
     private AddressInformationBuilder() {
+        template = new AddressInformation();
     }
 
-    public static AddressInformationBuilder getBuilder() {
+    private AddressInformationBuilder(AddressInformation addressInformation) {
+        template = Cloner.standard().deepClone(addressInformation);
+    }
+
+    public AddressInformationBuilder getBuilder() {
         return new AddressInformationBuilder();
     }
 
+    public AddressInformationBuilder getBuilder(AddressInformation addressInformation) {
+        return new AddressInformationBuilder(addressInformation);
+    }
+
     public AddressInformationBuilder id(long id) {
-        this.id = id;
+        template.setId(id);
         return this;
     }
 
     public AddressInformationBuilder mainAddress(String mainAddress) {
-        this.mainAddress = mainAddress;
+        template.setMainAddress(mainAddress);
         return this;
     }
 
     public AddressInformationBuilder additionalAddress(String additionalAddress) {
-        this.additionalAddress = additionalAddress;
+        template.setAdditionalAddress(additionalAddress);
         return this;
     }
 
     public AddressInformationBuilder city(String city) {
-        this.city = city;
+        template.setCity(city);
         return this;
     }
 
     public AddressInformationBuilder country(String country) {
-        this.country = country;
+        template.setCountry(country);
         return this;
     }
 
     public AddressInformationBuilder postalCode(String postalCode) {
-        this.postalCode = postalCode;
+        template.setPostalCode(postalCode);
         return this;
     }
 
     public AddressInformation build() {
-        AddressInformation addressInformation = new AddressInformation();
-        addressInformation.setId(id);
-        addressInformation.setMainAddress(mainAddress);
-        addressInformation.setAdditionalAddress(additionalAddress);
-        addressInformation.setCity(city);
-        addressInformation.setCountry(country);
-        addressInformation.setPostalCode(postalCode);
-        return addressInformation;
+        return template;
     }
 }

@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrchestrationService {
 
-    private AccountService accountService;
-    private PersonService personService;
+    private final AccountService accountService;
+    private final PersonService personService;
 
     @Autowired
     public OrchestrationService(AccountService accountService, PersonService personService) {
