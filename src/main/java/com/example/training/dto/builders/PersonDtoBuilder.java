@@ -75,6 +75,18 @@ public final class PersonDtoBuilder {
         return this;
     }
 
+    public PersonDtoBuilder withDefaults() {
+        template.setId(10);
+        template.setFirstName("Raivo");
+        template.setLastName("Lapins");
+        template.setFullName("Raivo Lapins");
+        template.setAccountInformations(Arrays.asList(new AccountInformation()));
+        template.setAddressInformation(new AddressInformation());
+        template.setPhoneNumberInformation(new PhoneNumberInformation());
+        template.setPersonNumber("personNumber");
+        return this;
+    }
+
     public PersonDto build() {
         return template;
     }

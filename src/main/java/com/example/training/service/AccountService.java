@@ -1,9 +1,6 @@
 package com.example.training.service;
 
-import java.util.Optional;
-
-import com.example.training.model.Account;
-import com.example.training.model.builders.AccountBuilder;
+import com.example.training.model.AccountInformation;
 import com.example.training.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,9 +27,7 @@ public class AccountService {
      * @param id Identifier of the account to fetch from database
      * @return Account object
      */
-    public Account getAccount(long id) {
-        // TODO Currently uses hard coded values. Implement fetching from DB and error checks.
-        Optional<Account> account = Optional.of(AccountBuilder.getBuilder().withDefaults().build());
-        return account.orElse(AccountBuilder.getBuilder().withDefaults().build());
+    AccountInformation getAccountInformation(long id) {
+        return accountRepository.getAccountInformationById(id);
     }
 }

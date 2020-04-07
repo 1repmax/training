@@ -1,7 +1,6 @@
 package com.example.training.dto.builders;
 
 import com.example.training.dto.AccountDto;
-import com.example.training.dto.PersonDto;
 import com.rits.cloning.Cloner;
 
 public final class AccountDtoBuilder {
@@ -24,13 +23,23 @@ public final class AccountDtoBuilder {
         return new AccountDtoBuilder();
     }
 
-    public AccountDtoBuilder person(PersonDto personDto) {
-        template.setPerson(personDto);
+    public AccountDtoBuilder id(long id) {
+        template.setId(id);
         return this;
     }
 
-    public AccountDtoBuilder id(long id) {
-        template.setId(id);
+    public AccountDtoBuilder linkedEmailAddress(String linkedEmailAddress) {
+        template.setLinkedEmailAddress(linkedEmailAddress);
+        return this;
+    }
+
+    public AccountDtoBuilder password(String password) {
+        template.setPassword(password);
+        return this;
+    }
+
+    public AccountDtoBuilder withDefaults() {
+        template.setId(10);
         return this;
     }
 

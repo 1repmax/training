@@ -1,10 +1,9 @@
 package com.example.training.controller;
 
 import com.example.training.dto.AccountDto;
-import com.example.training.dto.PersonDto;
 import com.example.training.mappers.AccountMapper;
 import com.example.training.mappers.PersonMapper;
-import com.example.training.service.OrchestrationService;
+import com.example.training.model.AccountInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,21 +24,18 @@ public class AccountController {
         etc..
     */
 
-    private final OrchestrationService orchestrationService;
     private final AccountMapper accountMapper;
     private final PersonMapper personMapper;
 
     @Autowired
-    public AccountController(OrchestrationService orchestrationService, AccountMapper accountMapper,
-                             PersonMapper personMapper) {
-        this.orchestrationService = orchestrationService;
+    public AccountController( AccountMapper accountMapper, PersonMapper personMapper) {
         this.accountMapper = accountMapper;
         this.personMapper = personMapper;
     }
 
     @GetMapping(value = "/account/{id}")
     public AccountDto getAccount(@PathVariable("id") long id) {
-        return accountMapper.toDto(orchestrationService.getAccountById(20));
+        return accountMapper.toDto(new AccountInformation());
     }
 
     @PostMapping(value = "/account/create")
@@ -56,27 +52,4 @@ public class AccountController {
     public void deleteAccount(@PathVariable("id") long id) {
 
     }
-
-    @PostMapping(value = "/person/create")
-    public PersonDto createPerson(@RequestBody PersonDto person) {
-        return new PersonDto();
-    }
-
-    @PutMapping(value = "/person/update/{personId}")
-    public PersonDto updatePerson(@PathVariable String personId) {
-        return new PersonDto();
-    }
-
-    @DeleteMapping(value = "/person/delete/{id}")
-    public void deletePerson(@PathVariable("id") long id) {
-
-    }
-
-
-
-
-
-
-
-
 }

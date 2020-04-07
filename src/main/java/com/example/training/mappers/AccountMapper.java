@@ -1,7 +1,7 @@
 package com.example.training.mappers;
 
 import com.example.training.dto.AccountDto;
-import com.example.training.model.Account;
+import com.example.training.model.AccountInformation;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -12,16 +12,18 @@ import org.mapstruct.Mapping;
  *
  * @since 0.0.1
  */
-@Mapper(componentModel = "spring")
+@Mapper
 public interface AccountMapper {
 
     @BeanMapping(ignoreByDefault = true)
-    @Mapping(source = "id", target = "id")
-    @Mapping(source = "person", target = "person")
-    AccountDto toDto(Account account);
+    @Mapping(target = "id", source = "id")
+    @Mapping(target = "linkedEmailAddress", source = "linkedEmailAddress")
+    @Mapping(target = "password", source = "password")
+    AccountDto toDto(AccountInformation accountInformation);
 
     @BeanMapping(ignoreByDefault = true)
-    @Mapping(source = "id", target = "id")
-    @Mapping(source = "person", target = "person")
-    Account toDomain(AccountDto accountDto);
+    @Mapping(target = "id", source = "id")
+    @Mapping(target = "linkedEmailAddress", source = "linkedEmailAddress")
+    @Mapping(target = "password", source = "password")
+    AccountInformation toDomain(AccountDto accountDto);
 }

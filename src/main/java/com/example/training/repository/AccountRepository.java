@@ -2,7 +2,6 @@ package com.example.training.repository;
 
 import java.util.List;
 
-import com.example.training.model.Account;
 import com.example.training.model.AccountInformation;
 import com.example.training.model.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,7 +20,8 @@ public interface AccountRepository extends JpaRepository<AccountInformation, Lon
     For more information, please, refer to: https://www.baeldung.com/spring-data-derived-queries */
     List<AccountInformation> getAccountInformationByLinkedEmailAddress(String linkedEmailAddress);
 
-    Account getAccountById(long id);
+    AccountInformation getAccountInformationById(long id);
     // TODO: 25/03/2020 Add few methods that edits data via query methods
+    AccountInformation saveAccountInformation(AccountInformation accountInformation);
 
 }
