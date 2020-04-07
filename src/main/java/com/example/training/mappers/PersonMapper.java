@@ -12,7 +12,7 @@ import org.mapstruct.Mapping;
  *
  * @since 0.0.1
  */
-@Mapper
+@Mapper(componentModel = "spring")
 public interface PersonMapper {
 
     @BeanMapping(ignoreByDefault = true)

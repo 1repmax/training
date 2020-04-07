@@ -30,4 +30,8 @@ public class AccountService {
     AccountInformation getAccountInformation(long id) {
         return accountRepository.getAccountInformationById(id);
     }
+
+    public AccountInformation saveAccount(AccountInformation accountInformation) {
+        return accountRepository.save(accountInformation);
+    }
 }

@@ -2,6 +2,7 @@ package com.example.training.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,12 +11,12 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@Entity
-@Table
+@Entity(name = "AccountInformation")
+@Table(name = "account_information")
 public class AccountInformation {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String linkedEmailAddress;
     private String password;

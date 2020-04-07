@@ -22,6 +22,5 @@ public interface AccountRepository extends JpaRepository<AccountInformation, Lon
 
     AccountInformation getAccountInformationById(long id);
     // TODO: 25/03/2020 Add few methods that edits data via query methods
-    AccountInformation saveAccountInformation(AccountInformation accountInformation);
 
 }
