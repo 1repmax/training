@@ -1,4 +1,4 @@
-package com.example.training.mappers;
+package com.example.training.mapper;
 
 import com.example.training.dto.PersonDto;
 import com.example.training.model.Person;

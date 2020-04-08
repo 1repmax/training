@@ -1,7 +1,7 @@
 package com.example.training.controller;
 
 import com.example.training.dto.PersonDto;
-import com.example.training.mappers.PersonMapper;
+import com.example.training.mapper.PersonMapper;
 import com.example.training.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;

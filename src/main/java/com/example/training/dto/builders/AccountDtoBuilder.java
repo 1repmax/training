@@ -3,6 +3,9 @@ package com.example.training.dto.builders;
 import com.example.training.dto.AccountDto;
 import com.rits.cloning.Cloner;
 
+import static com.example.training.constants.Constants.EMAIL_ADDRESS;
+import static com.example.training.constants.Constants.PASSWORD;
+
 public final class AccountDtoBuilder {
 
     private AccountDto template;
@@ -39,7 +42,9 @@ public final class AccountDtoBuilder {
     }
 
     public AccountDtoBuilder withDefaults() {
-        template.setId(10);
+        template.setId(1);
+        template.setLinkedEmailAddress(EMAIL_ADDRESS);
+        template.setPassword(PASSWORD);
         return this;
     }
 

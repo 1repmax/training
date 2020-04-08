@@ -1,5 +1,6 @@
 package com.example.training.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,6 +19,10 @@ public class AccountInformation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @Column(name = "LINKED_EMAIL_ADDRESS")
     private String linkedEmailAddress;
+
+    @Column(name = "PASSWORD")
     private String password;
 }

@@ -1,9 +1,13 @@
 package com.example.training.service;
 
+import java.util.Optional;
+
+import com.example.training.exception.ServiceException;
 import com.example.training.model.AccountInformation;
 import com.example.training.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class AccountService {
@@ -33,5 +37,25 @@ public class AccountService {
 
     public AccountInformation saveAccount(AccountInformation accountInformation) {
         return accountRepository.save(accountInformation);
+    }
+
+    public Optional<AccountInformation> findById(long id) {
+        return accountRepository.findById(id);
+    }
+
+    @Transactional
+    public AccountInformation updateById(long id, AccountInformation accountInformation) {
+        Integer updatedItem = accountRepository.updateById(id, accountInformation.getLinkedEmailAddress(),
+                accountInformation.getPassword());
+        Optional<AccountInformation> updatedAccount = Optional.empty();
+        if (updatedItem > 0) {
+            updatedAccount = accountRepository.findById(Long.valueOf(updatedItem));
+        }
+       return updatedAccount.orElseThrow(()-> new ServiceException("Account was not updated or does not exist"));
+    }
+
+    @Transactional
+    public Integer deleteAccountById(long id) {
+        return accountRepository.deleteById(id);
     }
 }

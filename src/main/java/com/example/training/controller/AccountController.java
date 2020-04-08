@@ -1,8 +1,12 @@
 package com.example.training.controller;
 
+import java.util.Optional;
+import javax.validation.Valid;
+
 import com.example.training.dto.AccountDto;
 import com.example.training.dto.validation.constraint.ValidAccountDto;
-import com.example.training.mappers.AccountMapper;
+import com.example.training.exception.ServiceException;
+import com.example.training.mapper.AccountMapper;
 import com.example.training.model.AccountInformation;
 import com.example.training.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,21 +42,23 @@ public class AccountController {
 
     @GetMapping(value = "/account/{id}")
     public AccountDto getAccount(@PathVariable("id") long id) {
-        return accountMapper.toDto(new AccountInformation());
+        Optional<AccountInformation> accountInformation = accountService.findById(id);
+        return accountMapper.toDto(accountInformation.orElseThrow( () -> new ServiceException("Account with such ID does not exist")));
     }
 
     @PostMapping(value = "/account/create")
-    public void createAccount(@RequestBody @ValidAccountDto AccountDto account) {
+    public void createAccount(@RequestBody @Valid @ValidAccountDto AccountDto account) {
         accountService.saveAccount(accountMapper.toDomain(account));
     }
 
-    @PutMapping(value = "/account/update/{accountId}")
-    public AccountDto updateAccount(@PathVariable String accountId) {
-        return new AccountDto();
+    @PutMapping(value = "/account/update")
+    public AccountDto updateAccount(@RequestBody @Valid @ValidAccountDto AccountDto accountDto) {
+        AccountInformation accountInformation = accountMapper.toDomain(accountDto);
+        return accountMapper.toDto(accountService.updateById(accountDto.getId(), accountInformation));
     }
 
     @DeleteMapping(value = "/account/delete/{id}")
-    public void deleteAccount(@PathVariable("id") long id) {
-
+    public Integer deleteAccountById(@PathVariable("id") long id) {
+        return accountService.deleteAccountById(id);
     }
 }
